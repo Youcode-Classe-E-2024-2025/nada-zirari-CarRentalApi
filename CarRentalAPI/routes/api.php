@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CarController;
 use App\Http\Controllers\API\RentalController;
 use Illuminate\Http\Request;
@@ -17,7 +18,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-
 
 Route::apiResource('cars', CarController::class);
 Route::apiResource('rentals', RentalController::class);
