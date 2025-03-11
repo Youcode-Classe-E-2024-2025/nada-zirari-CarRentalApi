@@ -14,6 +14,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('cars', CarController::class);
     Route::apiResource('rentals', RentalController::class);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('rentals/{rental}/payments', [PaymentController::class, 'store']);
+Route::get('payments', [PaymentController::class, 'index']);
+Route::get('payments/{payment}', [PaymentController::class, 'show']);
 });
 
 Route::post('/register', [AuthController::class, 'register']);
