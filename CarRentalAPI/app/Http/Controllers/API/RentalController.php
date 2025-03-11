@@ -11,6 +11,7 @@ class RentalController extends Controller
 {
     public function index()
     {
+        Rental::paginate(10);
         return Rental::with('car')->get();
     }
 

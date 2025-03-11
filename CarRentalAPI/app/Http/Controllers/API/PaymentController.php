@@ -37,6 +37,7 @@ class PaymentController extends Controller
 
     public function index()
     {
+        Payment::paginate(10);
         return response()->json(Payment::with('rental')->get());
     }
 }
