@@ -12,7 +12,7 @@ class RentalController extends Controller
 {
     public function index()
     {
-        return RentalResource::collection(Rental::with('car')->get());
+        return Rental::with('car')->get();
     }
 
     public function store(Request $request)

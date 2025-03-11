@@ -11,7 +11,7 @@ class CarController extends Controller
 {
     public function index()
     {
-        return CarResource::collection(Car::all());
+        return Car::all();
     }
 
     public function store(Request $request)
@@ -25,7 +25,7 @@ class CarController extends Controller
         ]);
 
         $car = Car::create($validated);
-        return new CarResource($car);
+        return $car;
     }
 
     public function show(Car $car)
@@ -44,7 +44,7 @@ class CarController extends Controller
         ]);
 
         $car->update($validated);
-        return new CarResource($car);
+        return $car;
     }
 
     public function destroy(Car $car)
