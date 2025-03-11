@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\RentalResource;
 use App\Models\Rental;
 use App\Models\Car;
 use Illuminate\Http\Request;
@@ -40,12 +39,12 @@ class RentalController extends Controller
         // Mettre à jour la disponibilité de la voiture
         $car->update(['is_available' => false]);
 
-        return new RentalResource($rental->load('car'));
+        return $rental->load('car');
     }
 
     public function show(Rental $rental)
     {
-        return new RentalResource($rental->load('car'));
+        return $rental->load('car');
     }
 
     public function update(Request $request, Rental $rental)
@@ -67,7 +66,7 @@ class RentalController extends Controller
             'total_cost' => $total_cost
         ]);
 
-        return new RentalResource($rental->load('car'));
+        return $rental->load('car');
     }
 
     public function destroy(Rental $rental)
