@@ -1,44 +1,54 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
+use App\Models\Car;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
-   
-
-   
-
-
-   
-    public function index() {
-        return Car::all();  // Liste de toutes les voitures
+    public function index()
+    {
+        return response()->json(Car::all());
     }
-    
-    public function store(Request $request) {
+
+    public function store(Request $request)
+    {
         $validated = $request->validate([
-            'make' => 'required|string|max:255',
-            'model' => 'required|string|max:255',
+            'brand' => 'required',
+            'model' => 'required',
             'year' => 'required|integer',
-            'price_per_day' => 'required|numeric',
+            'color' => 'required',
+            'daily_rate' => 'required|numeric'
         ]);
-        return Car::create($validated);
-    }
-    
-    public function show(Car $car) {
-        return $car;  // Détails d’une voiture spécifique
-    }
-    
-    public function update(Request $request, Car $car) {
-        $car->update($request->all());
-        return $car;
-    }
-    
-    public function destroy(Car $car) {
-        $car->delete();
-        return response()->noContent();
+
+        $car = Car::create($validated);
+        return response()->json($car, 201);
     }
 
-    
+    public function show(Car $car)
+    {
+        return response()->json($car);
+    }
+
+    public function update(Request $request, Car $car)
+    {
+        $validated = $request->validate([
+            'brand' => 'required',
+            'model' => 'required',
+            'year' => 'required|integer',
+            'color' => 'required',
+            'daily_rate' => 'required|numeric'
+        ]);
+
+        $car->update($validated);
+        return response()->json($car);
+    }
+
+    public function destroy(Car $car)
+    {
+        $car->delete();
+        return response()->json(null, 204);
+    }
 }
