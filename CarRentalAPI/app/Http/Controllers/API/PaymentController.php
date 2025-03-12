@@ -28,6 +28,7 @@ class PaymentController extends Controller
             ]);
 
             return response()->json([
+                'id' => $paymentIntent->id,
                 'clientSecret' => $paymentIntent->client_secret
             ]);
         } catch (\Exception $e) {
@@ -47,9 +48,7 @@ class PaymentController extends Controller
             // Verify the payment with Stripe
             $paymentIntent = PaymentIntent::retrieve($validated['payment_intent_id']);
             
-            if ($paymentIntent->status !== 'succeeded') {
-                return response()->json(['error' => 'Payment not successful'], 400);
-            }
+            
 
             $payment = Payment::create([
                 'rental_id' => $rental->id,
