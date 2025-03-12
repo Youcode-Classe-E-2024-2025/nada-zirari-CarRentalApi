@@ -18,6 +18,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('rentals/{rental}/payments', [PaymentController::class, 'store']);
 Route::get('payments', [PaymentController::class, 'index']);
 Route::get('payments/{payment}', [PaymentController::class, 'show']);
+Route::post('/rentals/{rental}/create-payment-intent', [PaymentController::class, 'createPaymentIntent']);
+Route::post('/create-payment-intent', [PaymentController::class, 'createPaymentIntent']);
+
 });
 
 Route::post('/register', [AuthController::class, 'register']);

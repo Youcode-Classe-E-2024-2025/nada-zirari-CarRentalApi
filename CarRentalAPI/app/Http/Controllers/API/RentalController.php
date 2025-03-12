@@ -6,7 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Rental;
 use App\Models\Car;
 use Illuminate\Http\Request;
-
+/**
+ * @OA\Tag(
+ *     name="Rentals",
+ *     description="API Endpoints for car rental management"
+ * )
+ */
 class RentalController extends Controller
 {
      /**
