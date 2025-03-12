@@ -25,5 +25,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::apiResource('cars', CarController::class);
-Route::apiResource('rentals', RentalController::class);
+Route::get('cars', [CarController::class, 'index']);
+Route::get('cars/{id}', [CarController::class, 'show']);
+
+Route::get('rentals', [RentalController::class, 'index']);
+Route::get('rentals/{id}', [RentalController::class, 'show']);

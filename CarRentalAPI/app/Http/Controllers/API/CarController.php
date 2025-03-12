@@ -30,7 +30,7 @@ class CarController extends Controller
 
     public function show(Car $car)
     {
-        return new CarResource($car);
+        return $car;
     }
 
     public function update(Request $request, Car $car)
