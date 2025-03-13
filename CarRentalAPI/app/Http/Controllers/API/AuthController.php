@@ -111,7 +111,21 @@
                 'token_type' => 'Bearer',
             ]);
         }
-    
+     /**
+     * @OA\Post(
+     *     path="/api/logout",
+     *     summary="Logout user",
+     *     tags={"Authentication"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Logout successful",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Logged out successfully")
+     *         )
+     *     )
+     * )
+     */
         public function logout(Request $request)
         {
             $request->user()->currentAccessToken()->delete();
